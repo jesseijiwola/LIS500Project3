@@ -44,22 +44,20 @@
       <div class="slide-bg bg-1"></div>
       <div class="slide-vignette"></div>
       <div class="slide-content split-layout">
-        <div class="hero-copy">
-          <div class="badge-row">
-          </div>
+
+       <div class="hero-copy">
           <h1 class="hero-title">Our Model</h1>
-          <p class="description">
-            Trained on 304 original photographs by Jesse Ijiwola, Sam Weinbach, and Joel Koenig and classifed into 3 states: <br />  
-            <ol>
-              <li>Laptop_Open</li>
-              <li>Laptop_Closed</li>
-              <li>No_Laptop (Or Empty Desk)</li>
-            </ol>
-            <br />
+          <p class="description" style="margin-bottom: 0.65rem;">
+            Trained on 304 original photographs by Jesse Ijiwola, Sam Weinbach, and Joel Koenig and classified into 3 states:
           </p>
-        
-          <div class="action-row">
-            <button class="btn-primary" id="start-btn" type="button" onclick="init()">&#9654; Start Camera</button>
+          <ol class="description" style="padding-left: 1.35rem; margin-bottom: 1.4rem;">
+            <li>Laptop_Open</li>
+            <li>Laptop_Closed</li>
+            <li>No_Laptop (Or Empty Desk)</li>
+          </ol>
+
+          <div class="action-row" style="position: relative; z-index: 20;">
+            <button class="btn-primary" id="start-btn" type="button" onclick="init()" style="display: inline-flex;">&#9654; Start Camera</button>
             <button class="btn-secondary" id="stop-btn" type="button" onclick="stopCamera()" style="display: none;">&#9632; Stop Camera</button>
             <button class="btn-secondary" type="button" onclick="goToSlide(3)">&#9432; Read Project Statement</button>
           </div>
@@ -154,12 +152,10 @@
       <div class="slide-vignette"></div>
 
       <div class="slide-content">
-        <div class="badge-row">
-        </div>
         <h2 class="hero-title">Project<br />Statement</h2>
 
-        <div class="action-row" style="margin-bottom: 1.1rem;">
-          <button class="btn-primary" id="read-btn" type="button" onclick="openStatement()">
+        <div class="action-row" style="margin-bottom: 1.1rem; position: relative; z-index: 20;">
+          <button class="btn-primary" id="read-btn" type="button" onclick="toggleStatement()">
             Read &#8595;
           </button>
         </div>
@@ -197,12 +193,29 @@
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
 
+    function resetStatementState() {
+      isReading = false;
+      const box = document.getElementById("statement-box");
+      const readBtn = document.getElementById("read-btn");
+      if (box) {
+        box.classList.remove("expanded");
+        box.scrollTop = 0;
+      }
+      if (readBtn) {
+        readBtn.innerHTML = "Read &#8595;";
+      }
+    }
+
     function goToSlide(index) {
       slides[currentSlide].classList.remove("active");
       dots[currentSlide].classList.remove("active");
       currentSlide = (index + slides.length) % slides.length;
       slides[currentSlide].classList.add("active");
       dots[currentSlide].classList.add("active");
+
+      if (currentSlide !== 3 && isReading) {
+        resetStatementState();
+      }
     }
 
     function changeSlide(step) {
@@ -210,7 +223,7 @@
     }
 
     setInterval(function () {
-      if (autoplay && !isRunning) {
+      if (autoplay && !isRunning && !isReading) {
         changeSlide(1);
       }
     }, 30000);
@@ -218,6 +231,34 @@
     function toggleAutoplay() {
       autoplay = !autoplay;
       document.getElementById("pause-btn").innerHTML = autoplay ? "&#10074;&#10074;" : "&#9654;";
+    }
+
+    function lockReading() {
+      if (!isReading) {
+        isReading = true;
+        autoplay = false;
+        document.getElementById("pause-btn").innerHTML = "&#9654;";
+        document.getElementById("statement-box").classList.add("expanded");
+        document.getElementById("read-btn").innerHTML = "Done Reading &#8593;";
+      }
+    }
+
+    function toggleStatement() {
+      const box = document.getElementById("statement-box");
+      const readBtn = document.getElementById("read-btn");
+
+      if (!isReading) {
+        isReading = true;
+        autoplay = false;
+        document.getElementById("pause-btn").innerHTML = "&#9654;";
+        box.classList.add("expanded");
+        readBtn.innerHTML = "Done Reading &#8593;";
+        box.scrollBy({ top: 140, behavior: "smooth" });
+      } else {
+        resetStatementState();
+        autoplay = true;
+        document.getElementById("pause-btn").innerHTML = "&#10074;&#10074;";
+      }
     }
 
     document.addEventListener("keydown", function (e) {
