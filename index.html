@@ -335,24 +335,6 @@
         labelContainer.children[idx].querySelector(".bar-label").textContent = name;
       });
     }
-
-    function lockReading() {
-      if (!isReading) {
-        isReading = true;
-        autoplay = false;
-        document.getElementById("pause-btn").innerHTML = "&#9654;";
-      }
-    }
-
-    function openStatement() {
-      lockReading();
-      const box = document.getElementById("statement-box");
-      const readBtn = document.getElementById("read-btn");
-      box.classList.add("expanded");
-      readBtn.innerHTML = "Reading &#10003;";
-      box.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      box.scrollBy({ top: 140, behavior: "smooth" });
-    }
   </script>
 </body>
 </html>
