@@ -16,7 +16,6 @@
   <!-- Top Icon Bar -->
   <header class="top-nav">
     <div class="brand">
-      <span class="pulse-dot"></span>
       <span>LIS 500 | PROJECT #3</span>
     </div>
 
@@ -332,7 +331,7 @@
         animationId = window.requestAnimationFrame(loop);
       } catch (err) {
         console.error("Camera/Model init error:", err);
-        startBtn.textContent = "▶ Start Camera";
+        startBtn.textContent = "Start Camera";
         startBtn.disabled = false;
         alert("Could not start camera or load model. Check webcam permissions and ensure you are viewing over HTTPS or localhost.");
       }
