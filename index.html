@@ -152,16 +152,23 @@
       <div class="slide-vignette"></div>
 
       <div class="slide-content">
-        <h2 class="hero-title">Project<br />Statement</h2>
-
-        <div class="action-row" style="margin-bottom: 1.1rem; position: relative; z-index: 20;">
-          <button class="btn-primary" id="read-btn" type="button" onclick="toggleStatement()">
+        <div class="statement-header">
+          <h2 class="hero-title statement-title">Project<br />Statement</h2>
+          <button class="btn-primary statement-read-btn" id="read-btn" type="button" onclick="toggleStatement()">
             Read &#8595;
           </button>
         </div>
 
         <div class="statement-scroll" id="statement-box" onscroll="lockReading()">
-          <p>[Project Statement]</p>
+          <article class="statement-document">
+            <p class="statement-lead">Project Statement:</p>
+            <p>For this project, our group created a machine learning model using Google Teachable Machine that can recognize whether a laptop is open, closed, or not present. While the task seemed fairly simple at first, the process of collecting images, training the model, and testing its performance gave me a much better understanding of how AI systems are built and where their limitations come from.</p>
+            <p>One of the biggest lessons from Unmasking AI that resonated with me during this project was Joy Buolamwini's idea that AI systems are only as reliable as the data they are trained on. Before this class, we knew data was important, but building a model ourselves helped us see how much influence the training process has on the final results. Our model learned patterns based entirely on the images we provided. If we did not include enough variety in our photos, such as different angles, backgrounds, or lighting conditions, the model struggled to correctly identify the laptop's state. This showed me firsthand that machine learning systems are not automatically objective or intelligent. Their performance depends heavily on the choices made by the people creating them.</p>
+            <p>Another important concept from Unmasking AI is Buolamwini's discussion of the "coded gaze." She argues that technology reflects the assumptions and decisions of its creators. Even though our project was much simpler than the facial recognition systems she studied, I could see this concept at work. My group had to decide what examples to include, what categories the model would recognize, and what counted as a successful prediction. Those decisions shaped how the model understood the world. The model was not making independent judgments; it was learning from the examples we chose to provide.</p>
+            <p>The project also helped me better understand the issue of bias in machine learning. Buolamwini's research showed that some facial recognition systems performed poorly on darker-skinned women because those groups were underrepresented in training datasets. While our model was not classifying people, it still demonstrated how bias can emerge. If most of our training images looked similar, the model performed well in familiar situations but struggled when conditions changed. This helped us understand how small choices in data collection can have a significant impact on performance.</p>
+            <p>Another lesson I took from the book is the importance of testing AI systems before relying on them. During development, our model seemed accurate, but it occasionally made mistakes when we introduced new environments or perspectives. In our case, these mistakes were harmless. However, Unmasking AI highlights how similar errors can become much more serious when AI is used in areas such as hiring, healthcare, surveillance, or law enforcement. This project made me appreciate why transparency, accountability, and thorough testing are so important in AI development.</p>
+            <p>Overall, this project changed the way I think about artificial intelligence. Instead of viewing AI as a completely objective technology, I now see it as a tool shaped by human decisions, data, and assumptions. Building our own model helped me connect the technical side of machine learning with the ethical concerns discussed in Unmasking AI. As students studying the technological atmosphere, we think that understanding these issues is just as important as learning how to build the technology itself. The project reinforced that creating responsible AI is not only about achieving high accuracy, but also about understanding the limitations, biases, and impacts of the systems we create.</p>
+          </article>
         </div>
       </div>
     </section>
